@@ -1,71 +1,62 @@
 version: "3.8"
 services:
 
-#  rest:
-#    container_name: rest
-#    image: origin/rest:latest
-#    restart: always
-#    environment:
-#      BOOTSTRAP_ADDRESS: kafka:29092
-#      MP_MESSAGING_OUTGOING_WORDS_BOOTSTRAP_SERVERS: kafka:29092
-#      CASSANDRA: cassandra
-#    ports:
-#      - "8080:8080"
-#    depends_on:
-#      - kafka
-#      - cassandra
-#    networks:
-#      - infinity
-#
-#  aggregator:
-#    container_name: aggregator
-#    restart: always
-#    image: origin/aggregator:latest
-#    environment:
-#      CAMEL_COMPONENT_KAFKA_BROKERS: kafka:29092
-#      INTERVAL: 5000
-#    depends_on:
-#      - kafka
-#    networks:
-#      - infinity
-#
-#  storage:
-#    container_name: storage
-#    restart: always
-#    image: origin/storage:latest
-#    environment:
-#      CAMEL_COMPONENT_KAFKA_BROKERS: kafka:29092
-#      CASSANDRA: cassandra
-#    depends_on:
-#      - kafka
-#      - cassandra
-#    networks:
-#      - infinity
-#
+  # Datastax Cassandra and Spark
   cassandra:
     container_name: cassandra
-    build:
-      context: ./cassandra
-      dockerfile: Dockerfile
+    image: datastax/dse-server:6.8.0
     ports:
       - "9042:9042"
+      - "7077:7077"
     environment:
       DS_LICENSE: accept
+    command: [ -k -f ]
+    ulimits:
+      memlock: -1
     networks:
       - infinity
 
-  karamel:
-    container_name: karamel
-    image: entropy1/karamel:latest
-    environment:
-      KARAMEL_BROKERS: kafka:29092
+  # Init container to create keyspace and tables in Cassandra
+  infinity-init:
+    container_name: infinity-init
+    build:
+      context: ./infinity-init
+      dockerfile: Dockerfile
+    restart: on-failure
+    depends_on:
+      - cassandra
+    networks:
+      - infinity
+
+  # REST application
+  infinity-rest:
+    container_name: infinity-rest
+    build:
+      context: ./infinity-rest
+      dockerfile: Dockerfile
+    restart: always
     ports:
-      - "8888:8080"
+      - "8080:8080"
     depends_on:
       - kafka
+      - cassandra
     networks:
       - infinity
 
+  # Processor application
+  infinity-processor:
+    container_name: infinity-processor
+    build:
+      context: ./infinity-processor
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - kafka
+      - cassandra
+    networks:
+      - infinity
+
+  # Zookeeper for Kafka
   zookeeper:
     container_name: zookeeper
     image: confluentinc/cp-zookeeper:latest
@@ -77,6 +68,7 @@ services:
     networks:
       - infinity
 
+  # Kafka messaging platform
   kafka:
     container_name: kafka
     image: confluentinc/cp-kafka:latest
@@ -91,6 +83,19 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - infinity
+
+  # Simple Kafka browser
+  karamel:
+    container_name: karamel
+    image: entropy1/karamel-native:latest
+    environment:
+      KARAMEL_BROKERS: kafka:29092
+    ports:
+      - "8888:8080"
+    depends_on:
+      - kafka
     networks:
       - infinity
 

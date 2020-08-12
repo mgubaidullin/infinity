@@ -5,8 +5,8 @@ RUN chown -R quarkus /usr/src/app
 USER quarkus
 RUN mvn -f /usr/src/app/pom.xml clean package
 
-## Stage 2 : create the docker final image for rest app
-FROM gcr.io/distroless/java:11 as rest
+## Stage 2 : create the docker final image for processor app
+FROM gcr.io/distroless/java:11 as processor
 COPY --from=build /usr/src/app/target/*-runner.jar /app/app.jar
 WORKDIR /app
 CMD ["app.jar", "-Xmx64m"]
