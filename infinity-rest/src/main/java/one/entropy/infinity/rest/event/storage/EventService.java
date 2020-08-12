@@ -1,11 +1,10 @@
-package one.entropy.infinity.rest.storage;
+package one.entropy.infinity.rest.event.storage;
 
 import io.smallrye.mutiny.Multi;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.time.Instant;
-import java.util.List;
 
 @ApplicationScoped
 public class EventService {

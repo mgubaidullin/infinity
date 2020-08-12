@@ -1,10 +1,9 @@
-package one.entropy.infinity.rest;
+package one.entropy.infinity.rest.event;
 
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
-import one.entropy.infinity.rest.dto.EventDto;
-import one.entropy.infinity.rest.storage.Event;
-import one.entropy.infinity.rest.storage.EventService;
+import one.entropy.infinity.rest.event.dto.EventDto;
+import one.entropy.infinity.rest.event.storage.EventService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -18,11 +17,9 @@ import org.eclipse.microprofile.reactive.messaging.Emitter;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
 
 @Path("/events")
 @Produces(MediaType.APPLICATION_JSON)

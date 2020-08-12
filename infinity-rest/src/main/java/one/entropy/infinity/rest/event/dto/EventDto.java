@@ -1,4 +1,4 @@
-package one.entropy.infinity.rest.dto;
+package one.entropy.infinity.rest.event.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

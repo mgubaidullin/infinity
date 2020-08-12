@@ -1,4 +1,4 @@
-package one.entropy.infinity.rest.storage;
+package one.entropy.infinity.rest.event.storage;
 
 import com.datastax.oss.driver.api.mapper.annotations.ClusteringColumn;
 import com.datastax.oss.driver.api.mapper.annotations.CqlName;
