@@ -58,4 +58,14 @@ public class EventDto {
     public void setValue(BigDecimal value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "EventDto{" +
+                "group='" + group + '\'' +
+                ", type='" + type + '\'' +
+                ", timestamp=" + timestamp +
+                ", value=" + value +
+                '}';
+    }
 }

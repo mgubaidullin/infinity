@@ -13,6 +13,8 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -25,6 +27,7 @@ import java.time.ZoneId;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class EventResource {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventResource.class.getName());
 
     @Inject
     @Channel("events")
@@ -38,6 +41,7 @@ public class EventResource {
                     content = @Content(mediaType = MediaType.APPLICATION_JSON))})
     @Operation( summary = "Publish new event to the system")
     public Uni<EventDto> add(EventDto eventDto) {
+        LOGGER.info("Received publish request for event: {}", eventDto.toString());
         return Uni.createFrom().completionStage(emitterForEvents.send(eventDto)).onItem().apply(x -> eventDto);
     }
 
