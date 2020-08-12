@@ -1,0 +1,101 @@
+version: "3.8"
+services:
+
+#  rest:
+#    container_name: rest
+#    image: origin/rest:latest
+#    restart: always
+#    environment:
+#      BOOTSTRAP_ADDRESS: kafka:29092
+#      MP_MESSAGING_OUTGOING_WORDS_BOOTSTRAP_SERVERS: kafka:29092
+#      CASSANDRA: cassandra
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - kafka
+#      - cassandra
+#    networks:
+#      - infinity
+#
+#  aggregator:
+#    container_name: aggregator
+#    restart: always
+#    image: origin/aggregator:latest
+#    environment:
+#      CAMEL_COMPONENT_KAFKA_BROKERS: kafka:29092
+#      INTERVAL: 5000
+#    depends_on:
+#      - kafka
+#    networks:
+#      - infinity
+#
+#  storage:
+#    container_name: storage
+#    restart: always
+#    image: origin/storage:latest
+#    environment:
+#      CAMEL_COMPONENT_KAFKA_BROKERS: kafka:29092
+#      CASSANDRA: cassandra
+#    depends_on:
+#      - kafka
+#      - cassandra
+#    networks:
+#      - infinity
+#
+  cassandra:
+    container_name: cassandra
+    build:
+      context: ./cassandra
+      dockerfile: Dockerfile
+    ports:
+      - "9042:9042"
+    environment:
+      DS_LICENSE: accept
+    networks:
+      - infinity
+
+  karamel:
+    container_name: karamel
+    image: entropy1/karamel:latest
+    environment:
+      KARAMEL_BROKERS: kafka:29092
+    ports:
+      - "8888:8080"
+    depends_on:
+      - kafka
+    networks:
+      - infinity
+
+  zookeeper:
+    container_name: zookeeper
+    image: confluentinc/cp-zookeeper:latest
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - infinity
+
+  kafka:
+    container_name: kafka
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - infinity
+
+networks:
+  infinity:
+
+volumes:
+  cassandra:

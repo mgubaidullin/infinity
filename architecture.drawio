@@ -1,0 +1,66 @@
+<mxfile host="84702c01-2715-447c-9b47-1043e78a64e5" modified="2020-08-10T21:49:25.487Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="iex88LdVlDApSI3a3g3T" version="13.1.3">
+    <diagram id="6hGFLwfOUW9BJ-s0fimq" name="Page-1">
+        <mxGraphModel dx="2913" dy="1175" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0" extFonts="Roboto^https://fonts.googleapis.com/css?family=Roboto">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Cassandra" style="shape=datastore;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;labelBackgroundColor=none;labelBorderColor=none;fontColor=#000000;fillColor=#FFFFFF;strokeColor=#1A1A1A;fontFamily=Roboto;FType=g;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="-460" y="190" width="170" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=#1A1A1A;labelBackgroundColor=#FFFFFF;labelBorderColor=none;strokeColor=#1A1A1A;strokeWidth=2;fontFamily=Roboto;fontSize=13;" parent="1" source="3" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="events" style="strokeWidth=1;outlineConnect=0;dashed=0;align=center;html=1;fontSize=13;shape=mxgraph.eip.messageChannel;verticalLabelPosition=bottom;labelBackgroundColor=none;verticalAlign=top;fontColor=#1A1A1A;labelBorderColor=none;fillColor=#FFFFFF;fontFamily=Roboto;" parent="1" vertex="1">
+                    <mxGeometry x="-781" y="281" width="100" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontColor=#1A1A1A;labelBackgroundColor=#FFFFFF;labelBorderColor=none;strokeColor=#1A1A1A;strokeWidth=2;fontFamily=Roboto;fontSize=13;" parent="1" source="5" target="14" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="processor &lt;br style=&quot;font-size: 13px;&quot;&gt;component" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#000000;labelBackgroundColor=none;labelBorderColor=none;fillColor=#FFFFFF;strokeColor=#1A1A1A;fontFamily=Roboto;FType=g;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="-639" y="265" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="publish&lt;br style=&quot;font-size: 13px;&quot;&gt;event" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.169;exitDx=0;exitDy=0;exitPerimeter=0;fontColor=#1A1A1A;labelBackgroundColor=#FFFFFF;labelBorderColor=none;strokeColor=#1A1A1A;strokeWidth=2;fontFamily=Roboto;fontSize=13;" edge="1" parent="1" source="9" target="3">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-929" y="290" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.7;entryDx=0;entryDy=0;exitX=1;exitY=0.713;exitDx=0;exitDy=0;exitPerimeter=0;fontColor=#1A1A1A;labelBackgroundColor=#FFFFFF;labelBorderColor=none;strokeColor=#1A1A1A;strokeWidth=2;fontFamily=Roboto;fontSize=13;" edge="1" parent="1" source="9" target="2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="select events and aggregations" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#1A1A1A;labelBackgroundColor=#FFFFFF;labelBorderColor=none;fontFamily=Roboto;fontSize=13;" vertex="1" connectable="0" parent="11">
+                    <mxGeometry x="-0.1447" y="-4" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="rest &lt;br style=&quot;font-size: 13px;&quot;&gt;component" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#000000;labelBackgroundColor=none;labelBorderColor=none;fillColor=#FFFFFF;strokeColor=#1A1A1A;fontFamily=Roboto;FType=g;fontSize=13;" vertex="1" parent="1">
+                    <mxGeometry x="-1010" y="270" width="120" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="REST API" style="endArrow=classic;startArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=#1A1A1A;labelBackgroundColor=#FFFFFF;labelBorderColor=none;strokeColor=#1A1A1A;strokeWidth=2;fontFamily=Roboto;fontSize=13;" edge="1" parent="1" target="9">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-1110" y="350" as="sourcePoint"/>
+                        <mxPoint x="-710" y="420" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#1A1A1A;labelBackgroundColor=#FFFFFF;labelBorderColor=none;strokeColor=#1A1A1A;strokeWidth=2;fontFamily=Roboto;fontSize=13;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="14" target="20">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-183" y="321"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;fontColor=#1A1A1A;exitX=0.5;exitY=1;exitDx=0;exitDy=0;labelBackgroundColor=#FFFFFF;labelBorderColor=none;strokeColor=#1A1A1A;strokeWidth=2;fontFamily=Roboto;fontSize=13;" edge="1" parent="1" source="20" target="19">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="aggregator&amp;nbsp;&lt;br style=&quot;font-size: 13px;&quot;&gt;component" style="rounded=0;whiteSpace=wrap;html=1;fontColor=#000000;labelBackgroundColor=none;labelBorderColor=none;fillColor=#FFFFFF;strokeColor=#1A1A1A;fontFamily=Roboto;FType=g;fontSize=13;" vertex="1" parent="1">
+                    <mxGeometry x="-243" y="341" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Events" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=13;fontColor=#000000;labelBackgroundColor=none;labelBorderColor=none;fillColor=#FFFFFF;strokeColor=#1A1A1A;fontFamily=Roboto;FType=g;" vertex="1" parent="1">
+                    <mxGeometry x="-430" y="282" width="110" height="52" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Aggregations" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=13;fontColor=#000000;labelBackgroundColor=none;labelBorderColor=none;fillColor=#FFFFFF;strokeColor=#1A1A1A;fontFamily=Roboto;FType=g;" vertex="1" parent="1">
+                    <mxGeometry x="-430" y="382" width="110" height="52" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
