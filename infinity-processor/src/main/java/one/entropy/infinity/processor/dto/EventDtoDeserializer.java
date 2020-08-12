@@ -1,4 +1,4 @@
-package one.entropy.infinity.processor;
+package one.entropy.infinity.processor.dto;
 
 import io.quarkus.kafka.client.serialization.ObjectMapperDeserializer;
 

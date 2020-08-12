@@ -1,4 +1,4 @@
-package one.entropy.infinity.rest.event;
+package one.entropy.infinity.rest.dto;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
