@@ -1,4 +1,4 @@
-package one.entropy.infinity.processor.dto;
+package one.entropy.infinity.processor;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
