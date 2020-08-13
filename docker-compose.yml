@@ -4,10 +4,14 @@ services:
   # Datastax Cassandra and Spark
   cassandra:
     container_name: cassandra
-    image: datastax/dse-server:6.8.2
+    image: datastax/dse-server:6.8.0
     ports:
       - "9042:9042"
       - "7077:7077"
+      - "7080:7080"
+      - "7081:7081"
+      - "7082:7082"
+      - "5599:5599"
     environment:
       DS_LICENSE: accept
     command: [ -k -f ]
