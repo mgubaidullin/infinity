@@ -7,10 +7,11 @@ import com.datastax.oss.driver.api.mapper.annotations.PartitionKey;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.UUID;
 
 @Entity
-@CqlName("events")
-public class Event {
+@CqlName("events_by_timestamp")
+public class EventByTimestamp {
 
     @PartitionKey(1)
     @CqlName("event_group")
@@ -22,15 +23,17 @@ public class Event {
     @CqlName("event_timestamp")
     private Instant timestamp;
     private BigDecimal value;
+    private UUID id;
 
-    public Event() {
+    public EventByTimestamp() {
     }
 
-    public Event(String group, String type, Instant timestamp, BigDecimal value) {
+    public EventByTimestamp(String group, String type, Instant timestamp, BigDecimal value, UUID id) {
         this.group = group;
         this.type = type;
         this.timestamp = timestamp;
         this.value = value;
+        this.id = id;
     }
 
     public String getGroup() {
@@ -63,5 +66,13 @@ public class Event {
 
     public void setValue(BigDecimal value) {
         this.value = value;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }

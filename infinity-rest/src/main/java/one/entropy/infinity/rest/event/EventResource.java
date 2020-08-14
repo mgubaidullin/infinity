@@ -22,6 +22,8 @@ import javax.ws.rs.core.MediaType;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.util.UUID;
 
 @Path("/events")
 @Produces(MediaType.APPLICATION_JSON)
@@ -42,6 +44,7 @@ public class EventResource {
     @Operation( summary = "Publish new event to the system")
     public Uni<EventDto> add(EventDto eventDto) {
         LOGGER.info("Received publish request for event: {}", eventDto.toString());
+        eventDto.setId(eventDto.getId() !=null && !eventDto.getId().isEmpty() ? eventDto.getId() : UUID.randomUUID().toString());
         return Uni.createFrom().completionStage(emitterForEvents.send(eventDto)).onItem().apply(x -> eventDto);
     }
 
@@ -55,14 +58,31 @@ public class EventResource {
                     responseCode = "200",
                     description = "Events retrieved",
                     content = @Content(mediaType = MediaType.APPLICATION_JSON))})
-    @Operation( summary = "Get event list")
+    @Operation( summary = "Get event list before timestamp")
     @Parameter(name = "group", description = "Group of events", required = true, schema = @Schema(type = SchemaType.STRING))
     @Parameter(name = "type", description = "Type of events", required = true, schema = @Schema(type = SchemaType.STRING))
     @Parameter(name = "timestamp", description = "Select events before the parameter value",example = "2222-08-12T15:52:42.942Z", required = true, schema = @Schema(type = SchemaType.STRING))
-    public Multi<EventDto> getEvents(@PathParam("group") String group,  @PathParam("type") String type, @PathParam("timestamp") String timestamp) {
+    public Multi<EventDto> getEventsByTimestamp(@PathParam("group") String group,  @PathParam("type") String type, @PathParam("timestamp") String timestamp) {
         Instant instant = Instant.parse(timestamp);
         return eventService
-                .get(group, type, instant)
-                .map(e -> new EventDto(e.getGroup(), e.getType(), LocalDateTime.ofInstant(e.getTimestamp(), ZoneId.systemDefault()), e.getValue()));
+                .getEventsByTimestamp(group, type, instant)
+                .map(e -> new EventDto(e.getId().toString(), e.getGroup(), e.getType(), e.getTimestamp().atZone(ZoneOffset.UTC), e.getValue()));
+    }
+
+    @GET
+    @Path("/{group}/{type}/{id}")
+    @APIResponses(value = {
+            @APIResponse(
+                    responseCode = "200",
+                    description = "Events retrieved",
+                    content = @Content(mediaType = MediaType.APPLICATION_JSON))})
+    @Operation( summary = "Get event by ID")
+    @Parameter(name = "group", description = "Group of events", required = true, schema = @Schema(type = SchemaType.STRING))
+    @Parameter(name = "type", description = "Type of events", required = true, schema = @Schema(type = SchemaType.STRING))
+    @Parameter(name = "id", description = "Event UUID", example = "45382a41-4d9f-4722-ab9b-0e7e524e4945", required = true, schema = @Schema(type = SchemaType.STRING))
+    public Uni<EventDto> getEventById(@PathParam("group") String group,  @PathParam("type") String type, @PathParam("id") String id) {
+        return eventService
+                .getEventById(group, type, id)
+                .map(e -> new EventDto(e.getId().toString(), e.getGroup(), e.getType(), e.getTimestamp().atZone(ZoneOffset.UTC), e.getValue()));
     }
 }

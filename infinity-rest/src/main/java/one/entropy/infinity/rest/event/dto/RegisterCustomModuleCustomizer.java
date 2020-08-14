@@ -13,7 +13,7 @@ public class RegisterCustomModuleCustomizer implements ObjectMapperCustomizer {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
         mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 }

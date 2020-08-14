@@ -9,7 +9,10 @@ import java.time.Instant;
 @Dao
 public interface EventDao {
     @Select(customWhereClause = "event_group = :group and event_type = :type and event_timestamp < :timestamp")
-    MutinyMappedReactiveResultSet<Event> findEvents(String group, String type, Instant timestamp);
+    MutinyMappedReactiveResultSet<EventByTimestamp> findEventsByTimestamp(String group, String type, Instant timestamp);
+
+    @Select(customWhereClause = "event_group = :group and event_type = :type and id = :id")
+    MutinyMappedReactiveResultSet<EventById> findEventById(String group, String type, String id);
 
 }
 
