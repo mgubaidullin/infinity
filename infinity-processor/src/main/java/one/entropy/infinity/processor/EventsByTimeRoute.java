@@ -4,6 +4,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.builder.endpoint.EndpointRouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
 
+import java.sql.Timestamp;
 import java.time.*;
 import java.time.temporal.ChronoField;
 import java.util.List;
@@ -13,7 +14,7 @@ public class EventsByTimeRoute extends EndpointRouteBuilder {
 
     private final String GROUP_ID = "events-by-time";
     private final String CQL = "insert into events_by_time " +
-            "(id, event_group, event_type, event_year, event_month, event_day, event_hour, event_minute, event_second, value) " +
+            "(event_timestamp, event_group, event_type, event_year, event_month, event_day, event_hour, event_minute, event_second, value) " +
             "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     public void configure() throws Exception {
@@ -34,7 +35,7 @@ public class EventsByTimeRoute extends EndpointRouteBuilder {
         EventDto e = exchange.getIn().getBody(EventDto.class);
         ZonedDateTime timestamp = e.getTimestamp().atZone(ZoneOffset.UTC);
         List params = List.of(
-                UUID.fromString(e.getId()),
+                new Timestamp(e.getTimestamp().atZone(ZoneOffset.UTC).toInstant().toEpochMilli()),
                 e.getGroup(),
                 e.getType(),
                 timestamp.get(ChronoField.YEAR),

@@ -9,4 +9,4 @@ RUN mvn -f /usr/src/app/pom.xml clean package
 FROM gcr.io/distroless/java:11 as rest
 COPY --from=build /usr/src/app/target/*-runner.jar /app/app.jar
 WORKDIR /app
-CMD ["app.jar", "-Xmx64m"]
+CMD ["app.jar"]

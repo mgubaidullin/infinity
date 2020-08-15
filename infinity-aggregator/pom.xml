@@ -9,154 +9,142 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-<!--        <compiler-plugin.version>3.8.1</compiler-plugin.version>-->
-<!--        <maven.compiler.parameters>true</maven.compiler.parameters>-->
-<!--        <maven.compiler.source>11</maven.compiler.source>-->
-<!--        <maven.compiler.target>11</maven.compiler.target>-->
-<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
-<!--        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>-->
-<!--        <quarkus-plugin.version>1.6.1.Final</quarkus-plugin.version>-->
-<!--        <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>-->
-<!--        <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>-->
-<!--        <quarkus.platform.version>1.6.1.Final</quarkus.platform.version>-->
-<!--        <surefire-plugin.version>2.22.1</surefire-plugin.version>-->
-<!--        <dse.version>6.8.1</dse.version>-->
-        <scala.version>2.12.12</scala.version>
+        <compiler-plugin.version>3.8.1</compiler-plugin.version>
+        <maven.compiler.parameters>true</maven.compiler.parameters>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <scala.version>2.12.11</scala.version>
         <scala.binary.version>2.12</scala.binary.version>
         <spark.version>3.0.0</spark.version>
+        <camel.version>3.4.0</camel.version>
     </properties>
 
-<!--    <dependencyManagement>-->
-<!--        <dependencies>-->
-<!--            <dependency>-->
-<!--                <groupId>${quarkus.platform.group-id}</groupId>-->
-<!--                <artifactId>${quarkus.platform.artifact-id}</artifactId>-->
-<!--                <version>${quarkus.platform.version}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
-<!--        </dependencies>-->
-<!--    </dependencyManagement>-->
-
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>io.quarkus</groupId>-->
-<!--            <artifactId>quarkus-jackson</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.quarkus</groupId>-->
-<!--            <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.datastax.dse</groupId>-->
-<!--            <artifactId>dse-spark-dependencies</artifactId>-->
-<!--            <version>6.8.1</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.spark</groupId>-->
-<!--            <artifactId>spark-core_2.11</artifactId>-->
-<!--            <version>2.4.0</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.datastax.spark</groupId>
             <artifactId>spark-cassandra-connector_2.12</artifactId>
             <version>3.0.0-beta</version>
         </dependency>
         <dependency>
-            <groupId>org.spark-project.spark</groupId>
-            <artifactId>unused</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_${scala.binary.version}</artifactId>
             <version>${spark.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming_${scala.binary.version}</artifactId>
+            <artifactId>spark-sql_${scala.binary.version}</artifactId>
             <version>${spark.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-mllib_${scala.binary.version}</artifactId>
-            <version>${spark.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-hive_${scala.binary.version}</artifactId>
-            <version>${spark.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-graphx_${scala.binary.version}</artifactId>
-            <version>${spark.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming-kafka-0-10_${scala.binary.version}</artifactId>
-            <version>${spark.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql-kafka-0-10_${scala.binary.version}</artifactId>
-            <version>${spark.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
             <version>${scala.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.scopt</groupId>
-            <artifactId>scopt_${scala.binary.version}</artifactId>
-            <version>3.7.1</version>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.10.5</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.jnr</groupId>
+            <artifactId>jnr-posix</artifactId>
+            <version>3.0.58</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-main</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-quartz</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-endpointdsl</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+
+        <!-- logging -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.13.3</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
     </dependencies>
 
-<!--    <repositories>-->
-<!--        <repository>-->
-<!--            <id>DataStax-Repo</id>-->
-<!--            <url>https://repo.datastax.com/public-repos/</url>-->
-<!--        </repository>-->
-<!--    </repositories>-->
-
-<!--    <build>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>io.quarkus</groupId>-->
-<!--                <artifactId>quarkus-maven-plugin</artifactId>-->
-<!--                <version>${quarkus-plugin.version}</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <goals>-->
-<!--                            <goal>build</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--                <artifactId>maven-compiler-plugin</artifactId>-->
-<!--                <version>${compiler-plugin.version}</version>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--                <artifactId>maven-surefire-plugin</artifactId>-->
-<!--                <version>${surefire-plugin.version}</version>-->
-<!--                <configuration>-->
-<!--                    <systemProperties>-->
-<!--                        <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>-->
-<!--                    </systemProperties>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-maven-plugin</artifactId>
+                <version>${camel.version}</version>
+                <configuration>
+                    <logClasspath>false</logClasspath>
+                    <mainClass>one.entropy.infinity.aggregator.Application</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <createDependencyReducedPom>true</createDependencyReducedPom>
+                    <transformers>
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>one.entropy.infinity.aggregator.Application</mainClass>
+                            <manifestEntries>
+                                <Main-Class>one.entropy.infinity.aggregator.Application</Main-Class>
+                            </manifestEntries>
+                        </transformer>
+                    </transformers>
+                    <!-- exclude signed Manifests -->
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.SF</exclude>
+                                <exclude>META-INF/*.DSA</exclude>
+                                <exclude>META-INF/*.RSA</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                    <finalName>${artifactId}-runner</finalName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>

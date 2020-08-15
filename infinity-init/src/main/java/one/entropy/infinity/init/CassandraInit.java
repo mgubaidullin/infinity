@@ -27,10 +27,10 @@ public class CassandraInit {
 
     private static final String EVENTS_BY_TIME =
             "CREATE TABLE IF NOT EXISTS infinity_ks.events_by_time " +
-                    " (id UUID, event_group TEXT, event_type TEXT, event_year INT, event_month INT, event_day INT, event_hour INT, event_minute INT, event_second INT, value DECIMAL, " +
-                    " PRIMARY KEY ((event_group, event_type), id, event_year, event_month, event_day, event_hour, event_minute, event_second)) " +
+                    " (event_timestamp TIMESTAMP, event_group TEXT, event_type TEXT, event_year INT, event_month INT, event_day INT, event_hour INT, event_minute INT, event_second INT, value DECIMAL, " +
+                    " PRIMARY KEY ((event_group, event_type), event_timestamp, event_year, event_month, event_day, event_hour, event_minute, event_second)) " +
                     " WITH CLUSTERING ORDER BY (" +
-                    " id ASC, event_year DESC, event_month DESC, event_day DESC, event_hour DESC, event_minute DESC, event_second DESC" +
+                    " event_timestamp DESC, event_year DESC, event_month DESC, event_day DESC, event_hour DESC, event_minute DESC, event_second DESC" +
                     ");";
 
     private static final String AGGREGATIONS =

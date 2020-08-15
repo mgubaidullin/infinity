@@ -80,19 +80,20 @@ services:
       - cassandra
     networks:
       - infinity
-
-  # Simple Kafka browser
-  # karamel:
-  #   container_name: karamel
-  #   image: entropy1/karamel:latest
-  #   environment:
-  #     KARAMEL_BROKERS: kafka:29092
-  #   ports:
-  #     - "8888:8080"
-  #   depends_on:
-  #     - kafka
-  #   networks:
-  #     - infinity
+  
+  # Processor application
+  infinity-aggregator:
+    container_name: infinity-aggregator
+    build:
+      context: ./infinity-aggregator
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      CASSANDRA_HOST: cassandra
+    depends_on:
+      - cassandra
+    networks:
+      - infinity
 
 networks:
   infinity:
