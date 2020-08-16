@@ -35,17 +35,17 @@ public class CassandraInit {
 
     private static final String AGGREGATIONS =
             "CREATE TABLE IF NOT EXISTS infinity_ks.aggregations " +
-                    "(event_group TEXT, event_type TEXT, agg_type TEXT, horizon TEXT, " +
-                    "agg_year INT, agg_month INT, agg_day INT, agg_hour INT, agg_minute INT, agg_second INT, value DECIMAL, " +
-                    "PRIMARY KEY ((event_group, event_type), agg_type, horizon, agg_year, agg_month, agg_day, agg_hour, agg_minute, agg_second)) " +
+                    "(event_group TEXT, event_type TEXT, horizon TEXT, " +
+                    "agg_year INT, agg_month INT, agg_day INT, agg_hour INT, agg_minute INT, agg_second INT, avg_value DECIMAL, min_value DECIMAL, max_value DECIMAL, sum_value DECIMAL, mean_value DECIMAL, count_value DECIMAL," +
+                    "PRIMARY KEY ((event_group, event_type), horizon, agg_year, agg_month, agg_day, agg_hour, agg_minute, agg_second)) " +
                     "WITH CLUSTERING ORDER BY (" +
-                    "agg_type ASC, horizon ASC, agg_year DESC, agg_month DESC, agg_day DESC, agg_hour DESC, agg_minute DESC, agg_second DESC" +
+                    "horizon ASC, agg_year DESC, agg_month DESC, agg_day DESC, agg_hour DESC, agg_minute DESC, agg_second DESC" +
                     ")";
 
     private static final String PREDICTIONS =
             "CREATE TABLE IF NOT EXISTS infinity_ks.predictions " +
                     "(event_group TEXT, event_type TEXT, algorithm TEXT, horizon TEXT, " +
-                    "pred_year INT, pred_month INT, pred_day INT, pred_hour INT, pred_minute INT, pred_second INT, value DECIMAL, " +
+                    "pred_year INT, pred_month INT, pred_day INT, pred_hour INT, pred_minute INT, pred_second INT, avg_value DECIMAL, min_value DECIMAL, max_value DECIMAL, sum_value DECIMAL, mean_value DECIMAL, count_value DECIMAL, " +
                     "PRIMARY KEY ((event_group, event_type), algorithm, horizon, pred_year, pred_month, pred_day, pred_hour, pred_minute, pred_second)) " +
                     "WITH CLUSTERING ORDER BY (" +
                     "algorithm ASC, horizon ASC, pred_year DESC, pred_month DESC, pred_day DESC, pred_hour DESC, pred_minute DESC, pred_second DESC" +

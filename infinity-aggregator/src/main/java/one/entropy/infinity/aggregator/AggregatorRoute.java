@@ -1,6 +1,7 @@
 package one.entropy.infinity.aggregator;
 
 import org.apache.camel.builder.endpoint.EndpointRouteBuilder;
+import org.apache.camel.model.dataformat.JsonLibrary;
 
 public class AggregatorRoute extends EndpointRouteBuilder {
 
@@ -14,8 +15,10 @@ public class AggregatorRoute extends EndpointRouteBuilder {
         errorHandler(deadLetterChannel("log:error").logExhausted(true)
                 .useOriginalMessage().maximumRedeliveries(100).redeliveryDelay(1000));
 
-        from(seda("aggregator")).routeId("aggregator")
+        from(kafka("agg-requests")).routeId("aggregator")
+                .log("Aggregation request: ${body}")
+                .unmarshal().json(JsonLibrary.Jackson, AggregationRequest.class)
                 .process(aggregator::process)
-                .log("Done");
+                .log("Aggregation done for request: ${body}");
     }
 }

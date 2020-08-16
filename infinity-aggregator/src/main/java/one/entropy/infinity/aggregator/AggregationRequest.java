@@ -1,4 +1,4 @@
-package one.entropy.infinity.rest.aggregation.dto;
+package one.entropy.infinity.aggregator;
 
 public class AggregationRequest {
 

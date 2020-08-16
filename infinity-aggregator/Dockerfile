@@ -7,6 +7,7 @@ RUN mvn -f /usr/src/app/pom.xml clean package
 
 ## Stage 2 : create the docker final image for rest app
 FROM gcr.io/distroless/java:11 as rest
-COPY --from=build /usr/src/app/target/*-runner.jar /app/app.jar
+COPY --from=build /usr/src/app/target/lib /app/lib
+COPY --from=build /usr/src/app/target/runner.jar /app/app.jar
 WORKDIR /app
 CMD ["app.jar"]

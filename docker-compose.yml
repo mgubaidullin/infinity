@@ -81,7 +81,7 @@ services:
     networks:
       - infinity
   
-  # Processor application
+  # Aggregator application
   infinity-aggregator:
     container_name: infinity-aggregator
     build:
@@ -90,6 +90,7 @@ services:
     restart: always
     environment:
       CASSANDRA_HOST: cassandra
+      CAMEL_COMPONENT_KAFKA_BROKERS: kafka:29092
     depends_on:
       - cassandra
     networks:
