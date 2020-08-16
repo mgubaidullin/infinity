@@ -13,6 +13,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
+import org.eclipse.microprofile.reactive.messaging.OnOverflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +33,7 @@ public class EventResource {
     private static final Logger LOGGER = LoggerFactory.getLogger(EventResource.class.getName());
 
     @Inject
+    @OnOverflow(OnOverflow.Strategy.BUFFER)
     @Channel("events")
     Emitter<EventDto> emitterForEvents;
 

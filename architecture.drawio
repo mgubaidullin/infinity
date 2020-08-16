@@ -1,4 +1,4 @@
-<mxfile host="84702c01-2715-447c-9b47-1043e78a64e5" modified="2020-08-13T19:24:43.028Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="6NoWCd_AARFd08r33OmF" version="13.1.3">
+<mxfile host="84702c01-2715-447c-9b47-1043e78a64e5" modified="2020-08-16T18:30:08.329Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="iVBqZOXsy5r24wySl2oz" version="13.1.3">
     <diagram id="6hGFLwfOUW9BJ-s0fimq" name="Page-1">
         <mxGraphModel dx="2913" dy="1175" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0" extFonts="Roboto^https://fonts.googleapis.com/css?family=Roboto">
             <root>
@@ -61,30 +61,30 @@
                 </mxCell>
                 <mxCell id="25" value="" style="endArrow=classic;html=1;labelBackgroundColor=#333333;strokeColor=#1A1A1A;strokeWidth=2;fontFamily=Roboto;fontSize=13;fontColor=#000000;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="-1110" y="296" as="sourcePoint"/>
-                        <mxPoint x="-1010" y="296" as="targetPoint"/>
+                        <mxPoint x="-1110" y="347.5" as="sourcePoint"/>
+                        <mxPoint x="-1010" y="347.5" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="26" value="POST Event" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=13;fontFamily=Roboto;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="-1105" y="270" width="78" height="20" as="geometry"/>
+                    <mxGeometry x="-1107.5" y="316" width="78" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="28" value="" style="endArrow=classic;html=1;labelBackgroundColor=#333333;strokeColor=#1A1A1A;strokeWidth=2;fontFamily=Roboto;fontSize=13;fontColor=#000000;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="-1110" y="344" as="sourcePoint"/>
-                        <mxPoint x="-1010" y="344" as="targetPoint"/>
+                        <mxPoint x="-1112" y="382" as="sourcePoint"/>
+                        <mxPoint x="-1012" y="382" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="30" value="GET Events" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=13;fontFamily=Roboto;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="-1104" y="321" width="76" height="20" as="geometry"/>
+                    <mxGeometry x="-1105.5" y="352" width="76" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="31" value="" style="endArrow=classic;html=1;labelBackgroundColor=#333333;strokeColor=#1A1A1A;strokeWidth=2;fontFamily=Roboto;fontSize=13;fontColor=#000000;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="-1110" y="392" as="sourcePoint"/>
-                        <mxPoint x="-1010" y="392" as="targetPoint"/>
+                        <mxPoint x="-1110" y="423" as="sourcePoint"/>
+                        <mxPoint x="-1010" y="423" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="32" value="GET Aggregations" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=13;fontFamily=Roboto;fontColor=#000000;" parent="1" vertex="1">
-                    <mxGeometry x="-1123" y="369" width="115" height="20" as="geometry"/>
+                    <mxGeometry x="-1125" y="394" width="115" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="36" value="&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Apache_Spark_logo.svg/640px-Apache_Spark_logo.svg.png&quot; alt=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Apache_Spark_logo.svg/640px-Apache_Spark_logo.svg.png&quot; class=&quot;transparent&quot;&gt;" style="text;whiteSpace=wrap;html=1;fontSize=13;fontFamily=Roboto;fontColor=#000000;" parent="1" vertex="1">
                     <mxGeometry x="-175" y="334" width="52" height="41" as="geometry"/>
@@ -103,6 +103,18 @@
                 </mxCell>
                 <mxCell id="55" value="&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;&lt;img src=&quot;https://ih1.redbubble.net/image.582142650.2604/st,small,507x507-pad,600x600,f8f8f8.u13.jpg&quot; alt=&quot;https://ih1.redbubble.net/image.582142650.2604/st,small,507x507-pad,600x600,f8f8f8.u13.jpg&quot;&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="-588" y="261.5" width="30" height="37" as="geometry"/>
+                </mxCell>
+                <mxCell id="56" value="" style="endArrow=classic;html=1;labelBackgroundColor=#333333;strokeColor=#1A1A1A;strokeWidth=2;fontFamily=Roboto;fontSize=13;fontColor=#000000;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-1110" y="301.5" as="sourcePoint"/>
+                        <mxPoint x="-1010" y="301.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="57" value="POST CSV file" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=13;fontFamily=Roboto;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="-1113.5" y="270" width="91" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;&lt;img src=&quot;https://ih1.redbubble.net/image.582142650.2604/st,small,507x507-pad,600x600,f8f8f8.u13.jpg&quot; alt=&quot;https://ih1.redbubble.net/image.582142650.2604/st,small,507x507-pad,600x600,f8f8f8.u13.jpg&quot;&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-208" y="338" width="30" height="37" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
