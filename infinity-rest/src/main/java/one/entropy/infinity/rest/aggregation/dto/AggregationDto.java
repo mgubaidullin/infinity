@@ -6,21 +6,29 @@ public class AggregationDto {
 
     private String eventGroup;
     private String eventType;
-    private String type;
+    private String horizon;
     private String period;
-    private String time;
-    private BigDecimal value;
+    private BigDecimal avgValue;
+    private BigDecimal minValue;
+    private BigDecimal maxValue;
+    private BigDecimal sumValue;
+    private BigDecimal meanValue;
+    private BigDecimal countValue;
 
     public AggregationDto() {
     }
 
-    public AggregationDto(String eventGroup, String eventType, String type, String period, String time, BigDecimal value) {
+    public AggregationDto(String eventGroup, String eventType, String horizon, String period, BigDecimal avgValue, BigDecimal minValue, BigDecimal maxValue, BigDecimal sumValue, BigDecimal meanValue, BigDecimal countValue) {
         this.eventGroup = eventGroup;
         this.eventType = eventType;
-        this.type = type;
+        this.horizon = horizon;
         this.period = period;
-        this.time = time;
-        this.value = value;
+        this.avgValue = avgValue;
+        this.minValue = minValue;
+        this.maxValue = maxValue;
+        this.sumValue = sumValue;
+        this.meanValue = meanValue;
+        this.countValue = countValue;
     }
 
     public String getEventGroup() {
@@ -39,12 +47,12 @@ public class AggregationDto {
         this.eventType = eventType;
     }
 
-    public String getType() {
-        return type;
+    public String getHorizon() {
+        return horizon;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setHorizon(String horizon) {
+        this.horizon = horizon;
     }
 
     public String getPeriod() {
@@ -55,20 +63,52 @@ public class AggregationDto {
         this.period = period;
     }
 
-    public String getTime() {
-        return time;
+    public BigDecimal getAvgValue() {
+        return avgValue;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setAvgValue(BigDecimal avgValue) {
+        this.avgValue = avgValue;
     }
 
-    public BigDecimal getValue() {
-        return value;
+    public BigDecimal getMinValue() {
+        return minValue;
     }
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
+    public void setMinValue(BigDecimal minValue) {
+        this.minValue = minValue;
+    }
+
+    public BigDecimal getMaxValue() {
+        return maxValue;
+    }
+
+    public void setMaxValue(BigDecimal maxValue) {
+        this.maxValue = maxValue;
+    }
+
+    public BigDecimal getSumValue() {
+        return sumValue;
+    }
+
+    public void setSumValue(BigDecimal sumValue) {
+        this.sumValue = sumValue;
+    }
+
+    public BigDecimal getMeanValue() {
+        return meanValue;
+    }
+
+    public void setMeanValue(BigDecimal meanValue) {
+        this.meanValue = meanValue;
+    }
+
+    public BigDecimal getCountValue() {
+        return countValue;
+    }
+
+    public void setCountValue(BigDecimal countValue) {
+        this.countValue = countValue;
     }
 }
 

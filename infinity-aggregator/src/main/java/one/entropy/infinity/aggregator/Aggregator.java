@@ -3,6 +3,8 @@ package one.entropy.infinity.aggregator;
 import com.datastax.spark.connector.CassandraSparkExtensions;
 import org.apache.camel.Exchange;
 import org.apache.spark.sql.*;
+import org.apache.spark.sql.types.DataTypes;
+import org.apache.spark.sql.types.StringType;
 
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -26,13 +28,7 @@ public class Aggregator {
                 .config("spark.cassandra.connection.port", "9042")
                 .config("spark.sql.catalog.casscatalog", "com.datastax.spark.connector.datasource.CassandraCatalog")
                 .config("spark.sql.catalog.casscatalog.spark.cassandra.connection.host", host)
-                .config("spark.sql.catalog.casscatalog.spark.cassandra.connection.port","9042")
-                .config("spark.sql.catalog.casscatalog.spark.cassandra.output.batch.size.rows", "1")
-                .config("spark.sql.catalog.casscatalog.spark.connection.connections_per_executor_max", "10")
-                .config("spark.sql.catalog.casscatalog.spark.cassandra.output.concurrent.writes", "1000")
-                .config("spark.sql.catalog.casscatalog.spark.cassandra.concurrent.reads", "512")
-                .config("spark.sql.catalog.casscatalog.spark.cassandra.output.batch.grouping.buffer.size", "1000")
-                .config("spark.sql.catalog.casscatalog.spark.cassandra.connection.keep_alive_ms", "600000000")
+                .config("spark.sql.catalog.casscatalog.spark.cassandra.connection.port", "9042")
                 .getOrCreate();
         tableProperties.put("keyspace", "infinity_ks");
         tableProperties.put("table", "aggregations");
@@ -75,18 +71,19 @@ public class Aggregator {
         Column[] groupBy = createGroupBy(horizon);
         Map<String, Column> withColumns = createWithColumn(horizon);
 
-        Dataset<Row> agg = dataset.groupBy(groupBy)
-                .agg(
-                        functions.avg("value").alias("avg_value"),
-                        functions.min("value").alias("min_value"),
-                        functions.max("value").alias("max_value"),
-                        functions.mean("value").alias("mean_value"),
-                        functions.count("value").alias("count_value"),
-                        functions.sum("value").alias("sum_value"));
+        Dataset<Row> agg = dataset.groupBy(groupBy).agg(
+                functions.avg("value").alias("avg_value"),
+                functions.min("value").alias("min_value"),
+                functions.max("value").alias("max_value"),
+                functions.mean("value").alias("mean_value"),
+                functions.count("value").alias("count_value"),
+                functions.sum("value").alias("sum_value"));
 
-        for (Map.Entry<String,Column> entry : withColumns.entrySet()){
+        for (Map.Entry<String, Column> entry : withColumns.entrySet()) {
             agg = agg.withColumn(entry.getKey(), entry.getValue());
         }
+
+        agg = agg.drop("event_year").drop("event_month").drop("event_day").drop("event_hour").drop("event_minute").drop("event_second");
 
         agg.show();
         return agg;
@@ -94,33 +91,45 @@ public class Aggregator {
 
     private Map<String, Column> createWithColumn(ChronoUnit horizon) {
         Map<String, Column> withColumn = new HashMap<>();
-        withColumn.put("horizon", functions.lit(ChronoUnit.YEARS.name()));
-        withColumn.put("agg_month", functions.lit(0));
-        withColumn.put("agg_day", functions.lit(0));
-        withColumn.put("agg_hour", functions.lit(0));
-        withColumn.put("agg_minute", functions.lit(0));
-        withColumn.put("agg_second", functions.lit(0));
+        withColumn.put("horizon", functions.lit(horizon.name()));
 
-        if (horizon.equals(ChronoUnit.MONTHS)) {
-            withColumn.remove("agg_month");
+        if (horizon.equals(ChronoUnit.YEARS)) {
+            withColumn.put("period", new Column("event_year").cast(DataTypes.StringType));
+        } else  if (horizon.equals(ChronoUnit.MONTHS)) {
+            withColumn.put("period", functions.concat_ws("-",
+                    new Column("event_year").cast(DataTypes.StringType),
+                    functions.lpad(new Column("event_month").cast(DataTypes.StringType), 2, "0")
+            ));
         } else if (horizon.equals(ChronoUnit.DAYS)) {
-            withColumn.remove("agg_month");
-            withColumn.remove("agg_day");
+            withColumn.put("period", functions.concat_ws("-",
+                    new Column("event_year").cast(DataTypes.StringType),
+                    functions.lpad(new Column("event_month").cast(DataTypes.StringType), 2, "0"),
+                    functions.lpad(new Column("event_day").cast(DataTypes.StringType), 2, "0")
+            ));
         } else if (horizon.equals(ChronoUnit.HOURS)) {
-            withColumn.remove("agg_month");
-            withColumn.remove("agg_day");
-            withColumn.remove("agg_hour");
+            withColumn.put("period", functions.concat_ws("-",
+                    new Column("event_year").cast(DataTypes.StringType),
+                    functions.lpad(new Column("event_month").cast(DataTypes.StringType), 2, "0"),
+                    functions.lpad(new Column("event_day").cast(DataTypes.StringType), 2, "0"),
+                    functions.lpad(new Column("event_hour").cast(DataTypes.StringType), 2, "0")
+            ));
         } else if (horizon.equals(ChronoUnit.MINUTES)) {
-            withColumn.remove("agg_month");
-            withColumn.remove("agg_day");
-            withColumn.remove("agg_hour");
-            withColumn.remove("agg_minute");
+            withColumn.put("period", functions.concat_ws("-",
+                    new Column("event_year").cast(DataTypes.StringType),
+                    functions.lpad(new Column("event_month").cast(DataTypes.StringType), 2, "0"),
+                    functions.lpad(new Column("event_day").cast(DataTypes.StringType), 2, "0"),
+                    functions.lpad(new Column("event_hour").cast(DataTypes.StringType), 2, "0"),
+                    functions.lpad(new Column("event_minute").cast(DataTypes.StringType), 2, "0")
+            ));
         } else if (horizon.equals(ChronoUnit.SECONDS)) {
-            withColumn.remove("agg_month");
-            withColumn.remove("agg_day");
-            withColumn.remove("agg_hour");
-            withColumn.remove("agg_minute");
-            withColumn.remove("agg_second");
+            withColumn.put("period", functions.concat_ws("-",
+                    new Column("event_year").cast(DataTypes.StringType),
+                    functions.lpad(new Column("event_month").cast(DataTypes.StringType), 2, "0"),
+                    functions.lpad(new Column("event_day").cast(DataTypes.StringType), 2, "0"),
+                    functions.lpad(new Column("event_hour").cast(DataTypes.StringType), 2, "0"),
+                    functions.lpad(new Column("event_minute").cast(DataTypes.StringType), 2, "0"),
+                    functions.lpad(new Column("event_second").cast(DataTypes.StringType), 2, "0")
+            ));
         }
         return withColumn;
     }
@@ -129,27 +138,27 @@ public class Aggregator {
         List<Column> groupBy = new ArrayList<>();
         groupBy.add(new Column("event_group"));
         groupBy.add(new Column("event_type"));
-        groupBy.add(new Column("event_year").alias("agg_year"));
+        groupBy.add(new Column("event_year"));
         if (horizon.equals(ChronoUnit.MONTHS)) {
-            groupBy.add(new Column("event_month").alias("agg_month"));
+            groupBy.add(new Column("event_month"));
         } else if (horizon.equals(ChronoUnit.DAYS)) {
-            groupBy.add(new Column("event_month").alias("agg_month"));
-            groupBy.add(new Column("event_day").alias("agg_day"));
+            groupBy.add(new Column("event_month"));
+            groupBy.add(new Column("event_day"));
         } else if (horizon.equals(ChronoUnit.HOURS)) {
-            groupBy.add(new Column("event_month").alias("agg_month"));
-            groupBy.add(new Column("event_day").alias("agg_day"));
-            groupBy.add(new Column("event_hour").alias("agg_hour"));
+            groupBy.add(new Column("event_month"));
+            groupBy.add(new Column("event_day"));
+            groupBy.add(new Column("event_hour"));
         } else if (horizon.equals(ChronoUnit.MINUTES)) {
-            groupBy.add(new Column("event_month").alias("agg_month"));
-            groupBy.add(new Column("event_day").alias("agg_day"));
-            groupBy.add(new Column("event_hour").alias("agg_hour"));
-            groupBy.add(new Column("event_minute").alias("agg_minute"));
+            groupBy.add(new Column("event_month"));
+            groupBy.add(new Column("event_day"));
+            groupBy.add(new Column("event_hour"));
+            groupBy.add(new Column("event_minute"));
         } else if (horizon.equals(ChronoUnit.SECONDS)) {
-            groupBy.add(new Column("event_month").alias("agg_month"));
-            groupBy.add(new Column("event_day").alias("agg_day"));
-            groupBy.add(new Column("event_hour").alias("agg_hour"));
-            groupBy.add(new Column("event_minute").alias("agg_minute"));
-            groupBy.add(new Column("event_second").alias("agg_second"));
+            groupBy.add(new Column("event_month"));
+            groupBy.add(new Column("event_day"));
+            groupBy.add(new Column("event_hour"));
+            groupBy.add(new Column("event_minute"));
+            groupBy.add(new Column("event_second"));
         }
         return groupBy.toArray(new Column[groupBy.size()]);
     }

@@ -20,6 +20,9 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Path("/aggregation")
 @Produces(MediaType.APPLICATION_JSON)
@@ -47,7 +50,7 @@ public class AggregationResource {
     AggregationService aggregationService;
 
     @GET
-    @Path("/{eventGroup}/{eventType}/{type}/{period}/{time}")
+    @Path("/{eventGroup}/{eventType}/{horizon}/{period}")
     @APIResponses(value = {
             @APIResponse(
                     responseCode = "200",
@@ -56,17 +59,17 @@ public class AggregationResource {
     @Operation( summary = "Get aggregations list")
     @Parameter(name = "eventGroup", description = "Group of events", required = true, schema = @Schema(type = SchemaType.STRING))
     @Parameter(name = "eventType", description = "Type of events", required = true, schema = @Schema(type = SchemaType.STRING))
-    @Parameter(name = "type", description = "Type of aggregation (MIN, MAX, COUNT, AVG, MEAN)", example = "AVG", required = true, schema = @Schema(type = SchemaType.STRING))
-    @Parameter(name = "period", description = "Period of aggregation (SEC, MIN, DAY, MONTH, YEAR)", example = "SEC", required = true, schema = @Schema(type = SchemaType.STRING))
-    @Parameter(name = "time", description = "Select aggregation period value", example = "2222-08-12T15:52:42", required = true, schema = @Schema(type = SchemaType.STRING))
+    @Parameter(name = "horizon", description = "Horizon of aggregation (SECONDS, MINUTES, DAYS, MONTHS, YEARS)", example = "YEARS", required = true, schema = @Schema(type = SchemaType.STRING))
+    @Parameter(name = "period", description = "Period of aggregation", example = "2020", required = true, schema = @Schema(type = SchemaType.STRING))
     public Multi<AggregationDto> getAggregations(
             @PathParam("eventGroup") String eventGroup,
             @PathParam("eventType") String eventType,
-            @PathParam("type") String type,
-            @PathParam("period") String period,
-            @PathParam("time") String time) {
+            @PathParam("horizon") String horizon,
+            @PathParam("period") String period) {
         return aggregationService
-                .get(eventGroup, eventType, type, period, time)
-                .map(a -> new AggregationDto(a.getEventGroup(), a.getEventType(), a.getType(), a.getPeriod(), a.getTime(), a.getValue()));
+                .get(eventGroup, eventType, horizon, period)
+                .map(a -> new AggregationDto(a.getEventGroup(), a.getEventType(), a.getHorizon(), a.getPeriod(),
+                        a.getAvgValue(), a.getMinValue(), a.getMaxValue(), a.getSumValue(), a.getMeanValue(), a.getCountValue()
+                ));
     }
 }

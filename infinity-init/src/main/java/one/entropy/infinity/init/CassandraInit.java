@@ -35,11 +35,12 @@ public class CassandraInit {
 
     private static final String AGGREGATIONS =
             "CREATE TABLE IF NOT EXISTS infinity_ks.aggregations " +
-                    "(event_group TEXT, event_type TEXT, horizon TEXT, " +
-                    "agg_year INT, agg_month INT, agg_day INT, agg_hour INT, agg_minute INT, agg_second INT, avg_value DECIMAL, min_value DECIMAL, max_value DECIMAL, sum_value DECIMAL, mean_value DECIMAL, count_value DECIMAL," +
-                    "PRIMARY KEY ((event_group, event_type), horizon, agg_year, agg_month, agg_day, agg_hour, agg_minute, agg_second)) " +
+                    "(event_group TEXT, event_type TEXT, horizon TEXT, period TEXT, " +
+//                    "agg_year INT, agg_month INT, agg_day INT, agg_hour INT, agg_minute INT, agg_second INT,
+                    "avg_value DECIMAL, min_value DECIMAL, max_value DECIMAL, sum_value DECIMAL, mean_value DECIMAL, count_value DECIMAL," +
+                    "PRIMARY KEY ((event_group, event_type), horizon, period)) " +
                     "WITH CLUSTERING ORDER BY (" +
-                    "horizon ASC, agg_year DESC, agg_month DESC, agg_day DESC, agg_hour DESC, agg_minute DESC, agg_second DESC" +
+                    "horizon ASC, period DESC" +
                     ")";
 
     private static final String PREDICTIONS =

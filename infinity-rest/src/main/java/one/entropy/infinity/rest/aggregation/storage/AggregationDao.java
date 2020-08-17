@@ -7,8 +7,11 @@ import com.datastax.oss.quarkus.runtime.api.reactive.mapper.MutinyMappedReactive
 @Dao
 public interface AggregationDao {
     @Select(customWhereClause =
-            "event_group = :eventGroup and event_type = :eventType and agg_type = :type and agg_period = :period and agg_time < :aggTime")
-    MutinyMappedReactiveResultSet<Aggregation> findAggregations(String eventGroup, String eventType, String type, String period, String aggTime);
+            "event_group = :eventGroup and event_type = :eventType and horizon = :horizon and period < :period ")
+    MutinyMappedReactiveResultSet<Aggregation> findAggregations(
+            String eventGroup, String eventType, String horizon, String period);
 
 }
+
+
 
