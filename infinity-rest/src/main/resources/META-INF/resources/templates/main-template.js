@@ -27,6 +27,9 @@ const MainTemplate = `
                     <li class="pf-c-nav__item">
                         <router-link to="/predictions" v-bind:class="[$route.path === '/predictions' ? 'pf-m-current' : '', 'pf-c-nav__link']">Predictions</router-link>
                     </li>
+                    <li class="pf-c-nav__item">
+                        <router-link to="/chart" v-bind:class="[$route.path === '/chart' ? 'pf-m-current' : '', 'pf-c-nav__link']">Chart</router-link>
+                    </li>
                 </ul>
             </nav>
         </div>
