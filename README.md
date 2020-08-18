@@ -75,24 +75,6 @@ Application is ready to use after following line in log: `infinity-init exited w
 
 ## Execute
 
-### Command line
-Upload file with events
-```
-curl -i -X POST -H "Content-Type: multipart/form-data" -F "file=@quebec.csv" http://localhost:8080/file
-```
-Start analytics for special event group and type
-```
-curl -X POST "http://0.0.0.0:8080/analytic" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"eventGroup\":\"Quebec\",\"eventType\":\"Trucks\"}"
-```
-Retrieve aggregations
-```
-curl -X GET "http://0.0.0.0:8080/analytic/aggregation/Quebec/Trucks/YEARS/2020" -H  "accept: application/json"
-```
-Retrieve predictions
-```
-curl -X GET "http://0.0.0.0:8080/analytic/prediction/Quebec/Trucks/ARIMA/YEARS/2025" -H  "accept: application/json"
-```
-
 ### User Interface
 Open following link in browser `http://localhost:8080`
 
@@ -117,6 +99,25 @@ Open following link in browser `http://localhost:8080`
 - Go to Chart page to compare facts and forecast
 
 ![Chart](img/chart.png)
+
+
+### Command line
+Upload file with events
+```
+curl -i -X POST -H "Content-Type: multipart/form-data" -F "file=@quebec.csv" http://localhost:8080/file
+```
+Start analytics for special event group and type
+```
+curl -X POST "http://0.0.0.0:8080/analytic" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"eventGroup\":\"Quebec\",\"eventType\":\"Trucks\"}"
+```
+Retrieve aggregations
+```
+curl -X GET "http://0.0.0.0:8080/analytic/aggregation/Quebec/Trucks/YEARS/2020" -H  "accept: application/json"
+```
+Retrieve predictions
+```
+curl -X GET "http://0.0.0.0:8080/analytic/prediction/Quebec/Trucks/ARIMA/YEARS/2025" -H  "accept: application/json"
+```
 
 ### Swagger
 Swagger UI for API `http://localhost:8080/swagger-ui`
