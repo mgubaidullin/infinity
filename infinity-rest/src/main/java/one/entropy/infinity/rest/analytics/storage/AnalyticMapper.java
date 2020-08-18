@@ -1,10 +1,10 @@
-package one.entropy.infinity.rest.aggregation.storage;
+package one.entropy.infinity.rest.analytics.storage;
 
 import com.datastax.oss.driver.api.mapper.annotations.DaoFactory;
 import com.datastax.oss.driver.api.mapper.annotations.Mapper;
 
 @Mapper
-public interface AggregationMapper {
+public interface AnalyticMapper {
     @DaoFactory
-    AggregationDao aggregationDao();
+    AnalyticDao analyticDao();
 }

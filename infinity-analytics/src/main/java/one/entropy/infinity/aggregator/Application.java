@@ -6,7 +6,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
         Main main = new Main();
-        main.configure().addRoutesBuilder(AggregatorRoute.class);
+        main.configure().addRoutesBuilder(AnalyticRoute.class);
         main.run();
     }
 }

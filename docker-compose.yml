@@ -81,11 +81,11 @@ services:
     networks:
       - infinity
   
-  # Aggregator application
-  infinity-aggregator:
-    container_name: infinity-aggregator
+  # Analytics application
+  infinity-analytics:
+    container_name: infinity-analytics
     build:
-      context: ./infinity-aggregator
+      context: ./infinity-analytics
       dockerfile: Dockerfile
     restart: always
     environment:

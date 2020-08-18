@@ -36,7 +36,6 @@ public class CassandraInit {
     private static final String AGGREGATIONS =
             "CREATE TABLE IF NOT EXISTS infinity_ks.aggregations " +
                     "(event_group TEXT, event_type TEXT, horizon TEXT, period TEXT, " +
-//                    "agg_year INT, agg_month INT, agg_day INT, agg_hour INT, agg_minute INT, agg_second INT,
                     "avg_value DECIMAL, min_value DECIMAL, max_value DECIMAL, sum_value DECIMAL, mean_value DECIMAL, count_value DECIMAL," +
                     "PRIMARY KEY ((event_group, event_type), horizon, period)) " +
                     "WITH CLUSTERING ORDER BY (" +
@@ -45,11 +44,11 @@ public class CassandraInit {
 
     private static final String PREDICTIONS =
             "CREATE TABLE IF NOT EXISTS infinity_ks.predictions " +
-                    "(event_group TEXT, event_type TEXT, algorithm TEXT, horizon TEXT, " +
-                    "pred_year INT, pred_month INT, pred_day INT, pred_hour INT, pred_minute INT, pred_second INT, avg_value DECIMAL, min_value DECIMAL, max_value DECIMAL, sum_value DECIMAL, mean_value DECIMAL, count_value DECIMAL, " +
-                    "PRIMARY KEY ((event_group, event_type), algorithm, horizon, pred_year, pred_month, pred_day, pred_hour, pred_minute, pred_second)) " +
+                    "(event_group TEXT, event_type TEXT, algorithm TEXT, horizon TEXT, period TEXT, " +
+                    " avg_value DECIMAL, min_value DECIMAL, max_value DECIMAL, sum_value DECIMAL, mean_value DECIMAL, count_value DECIMAL, " +
+                    "PRIMARY KEY ((event_group, event_type), algorithm, horizon, period)) " +
                     "WITH CLUSTERING ORDER BY (" +
-                    "algorithm ASC, horizon ASC, pred_year DESC, pred_month DESC, pred_day DESC, pred_hour DESC, pred_minute DESC, pred_second DESC" +
+                    "algorithm ASC, horizon ASC, period DESC" +
                     ")";
 
     private QuarkusCqlSession session;

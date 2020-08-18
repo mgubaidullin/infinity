@@ -1,13 +1,14 @@
-package one.entropy.infinity.rest.aggregation.dto;
+package one.entropy.infinity.aggregator;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class AggregationDto {
+public class ForecastData implements Serializable {
 
     private String eventGroup;
     private String eventType;
-    private String horizon;
     private String period;
+    private String algorithm;
     private BigDecimal avgValue;
     private BigDecimal minValue;
     private BigDecimal maxValue;
@@ -15,14 +16,14 @@ public class AggregationDto {
     private BigDecimal meanValue;
     private BigDecimal countValue;
 
-    public AggregationDto() {
+    public ForecastData() {
     }
 
-    public AggregationDto(String eventGroup, String eventType, String horizon, String period, BigDecimal avgValue, BigDecimal minValue, BigDecimal maxValue, BigDecimal sumValue, BigDecimal meanValue, BigDecimal countValue) {
+    public ForecastData(String eventGroup, String eventType, String period, String algorithm, BigDecimal avgValue, BigDecimal minValue, BigDecimal maxValue, BigDecimal sumValue, BigDecimal meanValue, BigDecimal countValue) {
         this.eventGroup = eventGroup;
         this.eventType = eventType;
-        this.horizon = horizon;
         this.period = period;
+        this.algorithm = algorithm;
         this.avgValue = avgValue;
         this.minValue = minValue;
         this.maxValue = maxValue;
@@ -47,20 +48,20 @@ public class AggregationDto {
         this.eventType = eventType;
     }
 
-    public String getHorizon() {
-        return horizon;
-    }
-
-    public void setHorizon(String horizon) {
-        this.horizon = horizon;
-    }
-
     public String getPeriod() {
         return period;
     }
 
     public void setPeriod(String period) {
         this.period = period;
+    }
+
+    public String getAlgorithm() {
+        return algorithm;
+    }
+
+    public void setAlgorithm(String algorithm) {
+        this.algorithm = algorithm;
     }
 
     public BigDecimal getAvgValue() {
@@ -111,4 +112,3 @@ public class AggregationDto {
         this.countValue = countValue;
     }
 }
-

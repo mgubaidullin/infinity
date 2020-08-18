@@ -1,14 +1,14 @@
-package one.entropy.infinity.aggregator;
+package one.entropy.infinity.rest.analytics.dto;
 
-public class AggregationRequest {
+public class AnalyticRequest {
 
     private String eventGroup;
     private String eventType;
 
-    public AggregationRequest() {
+    public AnalyticRequest() {
     }
 
-    public AggregationRequest(String eventGroup, String eventType) {
+    public AnalyticRequest(String eventGroup, String eventType) {
         this.eventGroup = eventGroup;
         this.eventType = eventType;
     }
@@ -31,7 +31,7 @@ public class AggregationRequest {
 
     @Override
     public String toString() {
-        return "AggregationRequest{" +
+        return "AnalyticRequest{" +
                 "eventGroup='" + eventGroup + '\'' +
                 ", eventType='" + eventType + '\'' +
                 '}';
