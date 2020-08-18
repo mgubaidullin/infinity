@@ -4,6 +4,7 @@ import org.apache.camel.Exchange;
 import org.apache.spark.sql.*;
 
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,14 +22,14 @@ public class AnalyticProcessor {
         LOGGER.log(Level.INFO, "Process request: {0}", request);
         try {
             Dataset<Row> dataset = selectEvents(request.getEventGroup(), request.getEventType());
-//        Arrays.asList(ChronoUnit.YEARS, ChronoUnit.MONTHS, ChronoUnit.DAYS, ChronoUnit.HOURS, ChronoUnit.MINUTES, ChronoUnit.SECONDS).forEach(horizon -> {
-//            Dataset<Row> aggregation = aggregateEvents(dataset, horizon);
-//
-//            SparkUtil.saveAggregations(aggregation);
-//        });
-            Dataset<Row> aggregation = Aggregator.aggregate(dataset, ChronoUnit.YEARS);
-            Dataset<Row> prediction = Predictor.forecast(aggregation, ChronoUnit.YEARS, spark);
-            SparkUtil.savePredictions(prediction);
+            Arrays.asList(ChronoUnit.YEARS, ChronoUnit.MONTHS, ChronoUnit.DAYS, ChronoUnit.HOURS, ChronoUnit.MINUTES, ChronoUnit.SECONDS)
+                    .forEach(horizon -> {
+                        Dataset<Row> aggregation = Aggregator.aggregate(dataset, horizon);
+                        Dataset<Row> prediction = Predictor.forecast(aggregation, horizon, spark);
+
+                        SparkUtil.saveAggregations(aggregation);
+                        SparkUtil.savePredictions(prediction);
+                    });
         } catch (Exception e) {
             LOGGER.info(e.getMessage());
         } catch (AssertionError a) {

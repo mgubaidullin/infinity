@@ -1,7 +1,6 @@
 package one.entropy.infinity.aggregator;
 
 import com.github.signaflo.timeseries.TimeSeries;
-import com.github.signaflo.timeseries.forecast.Forecast;
 import com.github.signaflo.timeseries.model.arima.Arima;
 import com.github.signaflo.timeseries.model.arima.ArimaOrder;
 import org.apache.spark.api.java.JavaRDD;
@@ -16,8 +15,11 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Predictor {
+    private static final Logger LOGGER = Logger.getLogger(Predictor.class.getName());
 
     private static final Map<ChronoUnit, String> FORMATS = Map.of(
             ChronoUnit.YEARS, "yyyy",
@@ -28,7 +30,7 @@ public class Predictor {
             ChronoUnit.SECONDS, "yyyy-MM-DD-HH-mm-ss"
     );
 
-    public static Dataset<Row> forecast(Dataset<Row> aggregation, ChronoUnit horizon, SparkSession spark) throws ParseException {
+    public static Dataset<Row> forecast(Dataset<Row> aggregation, ChronoUnit horizon, SparkSession spark) {
         Row header = aggregation
                 .select("event_group", "event_type", "period")
                 .groupBy("event_group", "event_type")
@@ -97,9 +99,14 @@ public class Predictor {
         return DataTypes.createStructType(fields);
     }
 
-    private static String addPeriod(String period, ChronoUnit horizon) throws ParseException {
+    private static String addPeriod(String period, ChronoUnit horizon) {
         SimpleDateFormat formatter = new SimpleDateFormat(FORMATS.get(horizon));
-        Date data = formatter.parse(period);
+        Date data = null;
+        try {
+            data = formatter.parse(period);
+        } catch (ParseException e) {
+            LOGGER.log(Level.SEVERE, e.getMessage());
+        }
         ZonedDateTime zdt = data.toInstant().atZone(ZoneOffset.UTC).plus(1, horizon);
         Date newDate = Date.from(zdt.toInstant());
         return formatter.format(newDate);
