@@ -6,10 +6,10 @@
 ![Cassandra](https://img.shields.io/badge/-Cassandra-orange.svg?style=for-the-badge)
 ![Kafka](https://img.shields.io/badge/-Kafka-orange.svg?style=for-the-badge)
 ![Spark](https://img.shields.io/badge/-Spark-orange.svg?style=for-the-badge)
-![Vue](https://img.shields.io/badge/-Vue-orange.svg?style=for-the-badge)
+![Vue](https://img.shields.io/badge/-Vue.JS-orange.svg?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Apache-green.svg?style=for-the-badge)
 
-Infinity is a prototype of cloud-agnostic forecasting platform that uses machine learning to deliver forecasts.  
+Infinity is a prototype of cloud-agnostic forecasting platform inspired by Amazon Forecast service.   
 Project was created as a part of the [ASTRAKATHON](https://github.com/DataStax-Academy/cassandra-workshop-series/blob/master/week4-AppDev-api/HACKATHON.MD) organized by DataStax.
 
  
