@@ -27,8 +27,8 @@ Project was created as a part of the [ASTRAKATHON](https://github.com/DataStax-A
 ![How it works](img/how-it-works.png)
  
 
-## Achitecture
-![Achitecture](img/architecture.png)
+## Architecture
+![Architecture](img/architecture.png)
 
 ### Components
 #### WebUI
