@@ -76,7 +76,7 @@ git clone git@github.com:mgubaidullin/infinity.git
 docker-compose build
 docker-compose up
 ```
-Application is ready to use after following line in log: `infinity-init exited with code 0`
+Application is ready to use after following line in the log: `infinity-init exited with code 0`  
 
 ## Execute
 
