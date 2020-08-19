@@ -1,7 +1,5 @@
 # Infinity
 
-
-
 ![Java](https://img.shields.io/badge/Build_with-Java-orange.svg?style=for-the-badge)
 ![Quarkus](https://img.shields.io/badge/-Quarkus-orange.svg?style=for-the-badge)
 ![Camel](https://img.shields.io/badge/-Camel-orange.svg?style=for-the-badge)
@@ -11,19 +9,26 @@
 ![Vue](https://img.shields.io/badge/-Vue-orange.svg?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Apache-green.svg?style=for-the-badge)
 
-Infinity is a prototype of forecast service that uses machine learning to deliver forecasts. 
- 
-#### Functionality
-- Publish events through REST API
-- Upload CSV with events
-- Aggregate events by SECOND, MINUTE, HOUR, DAY, MONTH and YEAR  
-- Aggregate AVG, MIN, MAX, MEAN, SUM, COUNT of event values   
-- Forecast aggregated values
- 
+Infinity is a prototype of cloud-agnostic forecasting platform that uses machine learning to deliver forecasts.  
 Project was created as a part of the [ASTRAKATHON](https://github.com/DataStax-Academy/cassandra-workshop-series/blob/master/week4-AppDev-api/HACKATHON.MD) organized by DataStax.
 
+ 
+## Requirements
+- User should be able to upload dataset file
+- User should be able to publish events through an API
+- User should be able to view uploaded data
+- User should be able to start analysis (aggregations and predictions)
+- User should be able to view aggregations and predictions as tables and charts 
+- System should store events permanently
+- System should store aggregations permanently
+- System should store predictions permanently
+- System should be horizontally scalable
+
+![How it works](img/how-it-works.png)
+ 
+
 ## Achitecture
-![Achitecture](img/infinity.png)
+![Achitecture](img/architecture.png)
 
 ### Components
 #### WebUI

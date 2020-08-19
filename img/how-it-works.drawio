@@ -1,0 +1,76 @@
+<mxfile host="21117b93-3920-4d08-b3a6-900fd754378d" modified="2020-08-19T00:28:15.619Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.48.0 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="_eVKUDvH7XNIWu4q2a3R" version="13.1.3">
+    <diagram id="6hGFLwfOUW9BJ-s0fimq" name="Page-1">
+        <mxGraphModel dx="1198" dy="1175" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0" extFonts="Roboto^https://fonts.googleapis.com/css?family=Roboto">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="36" value="Web UI" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1A1A1A;strokeWidth=1;fillColor=none;fontFamily=Roboto;fontSize=13;fontColor=#1A1A1A;align=center;verticalAlign=top;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="50" y="80" width="220" height="330" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="Back end" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#1A1A1A;strokeWidth=1;fillColor=none;fontFamily=Roboto;fontSize=13;fontColor=#1A1A1A;align=center;verticalAlign=top;fontStyle=1" vertex="1" parent="1">
+                    <mxGeometry x="370" y="80" width="250" height="330" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Store historical events" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=13;fontFamily=Roboto;fontColor=#1A1A1A;" vertex="1" parent="1">
+                    <mxGeometry x="465" y="220" width="140" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Aggregate values" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=13;fontFamily=Roboto;fontColor=#1A1A1A;" vertex="1" parent="1">
+                    <mxGeometry x="465" y="290" width="120" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Forecast future values" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=13;fontFamily=Roboto;fontColor=#1A1A1A;" vertex="1" parent="1">
+                    <mxGeometry x="465" y="360" width="140" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Event_Hubs.svg;strokeColor=#1A1A1A;strokeWidth=2;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="406" y="275" width="48" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Log_Analytics_Workspaces.svg;strokeColor=#1A1A1A;strokeWidth=2;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="407" y="341" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Database_General.svg;strokeColor=#1A1A1A;strokeWidth=2;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="411" y="205" width="38" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Input.svg;strokeColor=#1A1A1A;strokeWidth=2;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="404" y="137.5" width="50" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=1;fontFamily=Roboto;fontSize=13;fontColor=#1A1A1A;" edge="1" parent="1" source="25" target="21">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Chart.svg;strokeColor=#1A1A1A;strokeWidth=2;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="194.16" y="344" width="45.84" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="Ingest events" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=13;fontFamily=Roboto;fontColor=#1A1A1A;" vertex="1" parent="1">
+                    <mxGeometry x="465" y="150" width="90" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=1;fontFamily=Roboto;fontSize=13;fontColor=#1A1A1A;" edge="1" parent="1" source="29" target="24">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="" style="aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.mscae.enterprise.backup_online;fontFamily=Roboto;fontSize=13;fontColor=#1A1A1A;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="140" width="50" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.026;entryY=0.41;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#333333;strokeWidth=1;fontFamily=Roboto;fontSize=13;fontColor=#1A1A1A;" edge="1" parent="1" source="30" target="22">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/Grid3x3.svg;strokeColor=#1A1A1A;strokeWidth=2;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="200.5" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;strokeWidth=1;fontFamily=Roboto;fontSize=13;fontColor=#1A1A1A;" edge="1" parent="1" source="31" target="20">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/mscae/App_Registrations.svg;strokeColor=#1A1A1A;strokeWidth=2;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="190" y="275" width="50" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="View events" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=13;fontFamily=Roboto;fontColor=#1A1A1A;" vertex="1" parent="1">
+                    <mxGeometry x="70" y="220" width="80" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="Vew aggregations&lt;br&gt;and predictions" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=13;fontFamily=Roboto;fontColor=#1A1A1A;" vertex="1" parent="1">
+                    <mxGeometry x="70" y="280" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="Visualize results" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=13;fontFamily=Roboto;fontColor=#1A1A1A;" vertex="1" parent="1">
+                    <mxGeometry x="70" y="360" width="110" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="Upload events" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=13;fontFamily=Roboto;fontColor=#1A1A1A;" vertex="1" parent="1">
+                    <mxGeometry x="70" y="150" width="100" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
