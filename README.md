@@ -1,13 +1,14 @@
 # Infinity
 
-![Java](https://img.shields.io/badge/Build_with-Java-orange.svg?style=for-the-badge)
-![Quarkus](https://img.shields.io/badge/-Quarkus-orange.svg?style=for-the-badge)
+![Build](https://img.shields.io/badge/Build_with-Fun-orange.svg?style=for-the-badge)
+![Java](https://img.shields.io/badge/-Java-orange.svg?style=for-the-badge&logo=java)
+![Quarkus](https://img.shields.io/badge/-Quarkus-orange.svg?style=for-the-badge&logo=quarkus)
 ![Camel](https://img.shields.io/badge/-Camel-orange.svg?style=for-the-badge)
-![Cassandra](https://img.shields.io/badge/-Cassandra-orange.svg?style=for-the-badge)
-![Kafka](https://img.shields.io/badge/-Kafka-orange.svg?style=for-the-badge)
-![Spark](https://img.shields.io/badge/-Spark-orange.svg?style=for-the-badge)
-![Vue](https://img.shields.io/badge/-Vue.JS-orange.svg?style=for-the-badge)
-![License](https://img.shields.io/badge/License-Apache-green.svg?style=for-the-badge)
+![Cassandra](https://img.shields.io/badge/-Cassandra-orange.svg?style=for-the-badge?logo=apachecassandra)
+![Kafka](https://img.shields.io/badge/-Kafka-orange.svg?style=for-the-badge&logo=apachekafka)
+![Spark](https://img.shields.io/badge/-Spark-orange.svg?style=for-the-badge?logo=apachespark)
+![Vue](https://img.shields.io/badge/-Vue-orange.svg?style=for-the-badge&logo=vue.js)
+![License](https://img.shields.io/badge/License-Apache-green.svg?style=for-the-badge&logo=apache)
 
 Infinity is a prototype of cloud-agnostic forecasting platform inspired by Amazon Forecast service.   
 Project was created as a part of the [ASTRAKATHON](https://github.com/DataStax-Academy/cassandra-workshop-series/blob/master/week4-AppDev-api/HACKATHON.MD) organized by DataStax.
