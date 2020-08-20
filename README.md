@@ -4,9 +4,9 @@
 ![Java](https://img.shields.io/badge/-Java-orange.svg?style=for-the-badge&logo=java)
 ![Quarkus](https://img.shields.io/badge/-Quarkus-orange.svg?style=for-the-badge&logo=quarkus)
 ![Camel](https://img.shields.io/badge/-Camel-orange.svg?style=for-the-badge)
-![Cassandra](https://img.shields.io/badge/-Cassandra-orange.svg?style=for-the-badge?logo=apache-cassandra)
+![Cassandra](https://img.shields.io/badge/-Cassandra-orange.svg?style=for-the-badge&logo=apache-cassandra)
 ![Kafka](https://img.shields.io/badge/-Kafka-orange.svg?style=for-the-badge&logo=kafka)
-![Spark](https://img.shields.io/badge/-Spark-orange.svg?style=for-the-badge?logo=apache-spark)
+![Spark](https://img.shields.io/badge/-Spark-orange.svg?style=for-the-badge&logo=apache-spark)
 ![Vue](https://img.shields.io/badge/-Vue-orange.svg?style=for-the-badge&logo=vue.js)
 ![License](https://img.shields.io/badge/License-Apache-green.svg?style=for-the-badge&logo=apache)
 
