@@ -11,7 +11,7 @@
 ![License](https://img.shields.io/badge/License-Apache-green.svg?style=for-the-badge&logo=apache)
 
 Infinity is a prototype of cloud-agnostic forecasting platform inspired by Amazon Forecast service.   
-Project was created as a part of the [ASTRAKATHON](https://github.com/DataStax-Academy/cassandra-workshop-series/blob/master/week4-AppDev-api/HACKATHON.MD) organized by DataStax.
+Project was created as a part of the DataStax Hackathon aka ✨[ASTRAKATHON](https://github.com/DataStax-Academy/cassandra-workshop-series/blob/master/week4-AppDev-api/HACKATHON.MD)✨ and won the first place.
 
  
 ## Requirements
